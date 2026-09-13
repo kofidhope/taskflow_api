@@ -1,6 +1,7 @@
 package com.kofi.task_flow.contoroller;
 
 import com.kofi.task_flow.model.Task;
+import com.kofi.task_flow.service.TaskService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -8,6 +9,11 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/tasks")
 public class TaskController {
 
+    private final TaskService taskService;
+
+    public TaskController(TaskService taskService) {
+        this.taskService = taskService;
+    }
 
     @PostMapping
     public ResponseEntity<Task> createTask(@RequestBody Task task) {
