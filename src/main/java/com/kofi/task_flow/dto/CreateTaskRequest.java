@@ -3,7 +3,7 @@ package com.kofi.task_flow.dto;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
-public class CreateTaskDto {
+public class CreateTaskRequest {
 
     @NotBlank
     private String title;
@@ -11,7 +11,7 @@ public class CreateTaskDto {
     @Size(max = 500)
     private String description;
 
-    public CreateTaskDto() {
+    public CreateTaskRequest() {
     }
 
     public String getDescription() {

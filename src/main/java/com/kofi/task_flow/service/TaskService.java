@@ -1,5 +1,6 @@
 package com.kofi.task_flow.service;
 
+import com.kofi.task_flow.dto.CreateTaskRequest;
 import com.kofi.task_flow.model.Task;
 import com.kofi.task_flow.model.TaskStatus;
 import org.springframework.stereotype.Service;
@@ -14,8 +15,12 @@ public class TaskService {
 
     private final Map<Long, Task> tasks = new HashMap<>();
 
-    public Task createTask(Task task) {
+    public Task createTask(CreateTaskRequest request) {
+        Task task = new Task();
+        task.setTitle(request.getTitle());
+        task.setDescription(request.getDescription());
         tasks.put(task.getId(), task);
+
         return task;
     }
 

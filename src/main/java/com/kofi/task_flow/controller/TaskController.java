@@ -1,7 +1,9 @@
 package com.kofi.task_flow.controller;
 
+import com.kofi.task_flow.dto.CreateTaskRequest;
 import com.kofi.task_flow.model.Task;
 import com.kofi.task_flow.service.TaskService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,8 +20,8 @@ public class TaskController {
     }
 
     @PostMapping
-    public ResponseEntity<Task> createTask(@RequestBody Task task) {
-        return  ResponseEntity.ok(taskService.createTask(task));
+    public ResponseEntity<Task> createTask(@Valid @RequestBody CreateTaskRequest request) {
+        return  ResponseEntity.ok(taskService.createTask(request));
     }
 
     @GetMapping
