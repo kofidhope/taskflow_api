@@ -1,6 +1,7 @@
 package com.kofi.task_flow.service;
 
 import com.kofi.task_flow.model.Task;
+import com.kofi.task_flow.model.TaskStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -26,5 +27,12 @@ public class TaskService {
         return tasks.get(id);
     }
 
+    public Task updateTaskStatus(Long id, TaskStatus status) {
+        Task task = tasks.get(id);
+        if (task != null) {
+            task.setStatus(status);
+        }
+        return task;
+    }
 
 }

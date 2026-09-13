@@ -33,4 +33,9 @@ public class TaskController {
         return ResponseEntity.ok(taskService.getTaskById(id));
     }
 
+    @PatchMapping("/{id}/status")
+    public ResponseEntity<Task> updateTaskStatus(@PathVariable Long id, @RequestBody Task task) {
+        return ResponseEntity.ok(taskService.updateTaskStatus(id, task.getStatus()));
+    }
+
 }
