@@ -4,6 +4,7 @@ import com.kofi.task_flow.dto.CreateTaskRequest;
 import com.kofi.task_flow.model.Task;
 import com.kofi.task_flow.service.TaskService;
 import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,6 +22,9 @@ public class TaskController {
 
     @PostMapping
     public ResponseEntity<Task> createTask(@Valid @RequestBody CreateTaskRequest request) {
+        if(request.getTitle() == null || request.getDescription().isBlank()) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
         return  ResponseEntity.ok(taskService.createTask(request));
     }
 
