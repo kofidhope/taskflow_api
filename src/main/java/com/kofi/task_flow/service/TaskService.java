@@ -35,4 +35,12 @@ public class TaskService {
         return task;
     }
 
+    public Task deleteTask(Long id) {
+        Task task = tasks.get(id);
+        if (task == null) {
+            System.out.println("Invalid id: " + id);
+        }
+        return tasks.remove(id);
+    }
+
 }
