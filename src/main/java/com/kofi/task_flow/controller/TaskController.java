@@ -1,4 +1,4 @@
-package com.kofi.task_flow.contoroller;
+package com.kofi.task_flow.controller;
 
 import com.kofi.task_flow.model.Task;
 import com.kofi.task_flow.service.TaskService;
