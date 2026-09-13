@@ -25,7 +25,8 @@ public class TaskController {
         if(request.getTitle() == null || request.getDescription().isBlank()) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
-        return  ResponseEntity.ok(taskService.createTask(request));
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(taskService.createTask(request));
     }
 
     @GetMapping
@@ -36,17 +37,35 @@ public class TaskController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Task> getTaskById(@PathVariable Long id) {
+        Task task = taskService.getTaskById(id);
+
+        if (task == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
         return ResponseEntity.ok(taskService.getTaskById(id));
     }
 
     @PatchMapping("/{id}/status")
     public ResponseEntity<Task> updateTaskStatus(@PathVariable Long id, @RequestBody Task task) {
-        return ResponseEntity.ok(taskService.updateTaskStatus(id, task.getStatus()));
+        Task updatedTask = taskService.updateTaskStatus(id, task.getStatus());
+
+        if (updatedTask == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+
+        return ResponseEntity.ok(updatedTask);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Task> deleteTask(@PathVariable Long id) {
-        return ResponseEntity.ok(taskService.deleteTask(id));
+
+        Task deletedTask = taskService.deleteTask(id);
+
+        if (deletedTask == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+
+        return ResponseEntity.ok(deletedTask);
     }
 
 }
