@@ -5,6 +5,8 @@ import com.kofi.task_flow.service.TaskService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/tasks")
 public class TaskController {
@@ -17,14 +19,12 @@ public class TaskController {
 
     @PostMapping
     public ResponseEntity<Task> createTask(@RequestBody Task task) {
-        return  ResponseEntity
-                .status(201)
-                .body(task);
+        return  ResponseEntity.ok(taskService.createTask(task));
     }
 
     @GetMapping
-    public ResponseEntity<Task> getTask(String id) {
-        return ResponseEntity.ok().body(new Task());
+    public ResponseEntity<List<Task>> getAllTasks(Long id) {
+        return ResponseEntity.ok(taskService.getAllTasks());
     }
 
 
