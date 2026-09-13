@@ -22,5 +22,9 @@ public class TaskService {
         return new ArrayList<>(tasks.values());
     }
 
+    public Task getTaskById(Long id) {
+        return tasks.get(id);
+    }
+
 
 }
