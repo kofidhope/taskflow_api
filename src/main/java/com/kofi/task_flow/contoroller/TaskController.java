@@ -2,14 +2,19 @@ package com.kofi.task_flow.contoroller;
 
 import com.kofi.task_flow.model.Task;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/tasks")
 public class TaskController {
+
+
+    @PostMapping
+    public ResponseEntity<Task> createTask(@RequestBody Task task) {
+        return  ResponseEntity
+                .status(201)
+                .body(task);
+    }
 
     @GetMapping
     public ResponseEntity<Task> getTask(String id) {
